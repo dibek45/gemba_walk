@@ -1,0 +1,33 @@
+
+<ion-header>
+    <ion-navbar color="dark">
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      <ion-title></ion-title>
+      <ion-buttons end>
+         
+          <button ion-button icon-only (click)="information($event)" >
+            <ion-icon name="md-help"></ion-icon>
+          </button>
+      </ion-buttons>
+        
+    </ion-navbar>
+</ion-header>
+<ion-content  padding class="bg-style" class="background_light">
+   
+    <ion-fab bottom right >
+        <button ion-fab color="light"><ion-icon name="md-arrow-dropup"></ion-icon></button>
+        <ion-fab-list side="left">
+          <button ion-fab><ion-icon color="secondary"name="md-create" (click)="terminar_evento()"></ion-icon></button>
+          <button ion-fab><ion-icon color="primary" name="add-circle" (click)="new_data()" *ngIf="show==='lista'"></ion-icon></button>
+          
+        </ion-fab-list>
+      </ion-fab>  
+
+  <list-hallazgos  (id_elemento)=itemHallasgo($event) (id_elemento_opcion)=itemHallasgo_opcion($event) *ngIf="show==='lista'" [id_evento]="id_evento"></list-hallazgos>
+
+  <hallazgo [id_hallazgo]="parentID" *ngIf="show==='hallazgo'"> </hallazgo>
+ 
+</ion-content>
+

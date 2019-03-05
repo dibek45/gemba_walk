@@ -1,0 +1,30 @@
+    <button ion-button *ngIf="num_imagen<2" block (click)="takePhoto(1)" ><ion-icon name="md-camera" ></ion-icon></button>
+
+<img [src]="image" *ngIf="image" />
+
+
+<button ion-button (click)="takePhoto(0)" full color="secondary">Abrir Galeria</button>
+<ion-list class="bg-style">
+  <ion-item-sliding *ngFor="let imagen of imagenes; let i=index">
+   
+    <ion-item nopadding>
+        <ion-grid>
+            <ion-row (click)="getCurrentData(imagen.rowid)" (long-press)="deleteData(imagen.rowid)">
+                <ion-col col-2> 
+                    <img [src]="imagen.imagen" style="width: 55px; height: 60px;"/>
+                </ion-col>
+                <ion-col col-8>
+                  <p>{{imagen.fecha|date:'short'}}</p>
+              </ion-col>
+              <ion-col col-2>
+              <ion-icon name="more" style="padding-left: 10px" (click)="opciones(imagen.rowid)"></ion-icon>
+              </ion-col>
+            </ion-row>
+            </ion-grid>      
+    
+    </ion-item>
+    
+  </ion-item-sliding>
+</ion-list>
+
+

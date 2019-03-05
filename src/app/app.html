@@ -1,19 +1,27 @@
-<ion-menu [content]="content">
+<ion-menu [content]="content" >
 
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Pages</ion-title>
+  <ion-header class="bg-style">
+    <ion-toolbar class="bg-style" color="copamex">
+      <ion-title color="dark"><ion-icon name="md-walk"></ion-icon>Gemba Walk</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <ion-content>
-    <ion-list>
-      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
+  <ion-content class="background_light">
+    <ion-list class="item_color">
+      <button ion-item (click)="openMisEventos()" class="item_color">
+        <ion-icon name="md-clipboard"> Eventos por subir</ion-icon>
+      </button>
+      <button ion-item (click)="proxima()" class="item_color">
+        <ion-icon name="md-alarm"> Mis hallazgos pendientes</ion-icon>
+      </button>
+      <button ion-item (click)="proxima()" class="item_color">
+        <ion-icon name="md-checkmark"> Hallazgos completados</ion-icon>
+      </button>
+      
+      <button ion-item (click)="salir()" class="item_color">
+        <ion-icon name="md-log-out"> Salir</ion-icon>
       </button>
     </ion-list>
+   
   </ion-content>
-
 </ion-menu>
-
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

@@ -1,0 +1,38 @@
+<ion-header>
+
+  
+      <ion-navbar color="dark">
+          <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+    <ion-title>Terminar evento</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding class="background_light">
+    
+    
+
+    <form [formGroup]="todo" (ngSubmit)="logForm()" >
+        <ion-item>
+          <ion-label ><ion-icon name="md-walk">Evento: </ion-icon> </ion-label>
+          <ion-select  formControlName="tipo_eventoID"  (ionChange)="get_evento($event)">
+            <ion-option *ngFor="let evento of eventos; let i=index" [value]="evento"  >{{evento.nombre_evento}}</ion-option>
+          
+          </ion-select>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label><ion-icon name="ios-search-outline"> Subarea:</ion-icon></ion-label>
+          <ion-select  formControlName="tipo_sub_areaID" (ionChange)="guardar_sub_area($event)" >
+            <ion-option *ngFor="let area of subAreas; let i=index" [value]="area.areaID"  >{{area.area}}</ion-option>
+          
+          </ion-select>
+        </ion-item>     
+          <button ion-button type="submit" block (click)="enviar()" [disabled]="todo.invalid">
+              <ion-icon name="cloud-upload" ></ion-icon>&nbsp; Guardar
+          </button>
+        </form>
+
+</ion-content>

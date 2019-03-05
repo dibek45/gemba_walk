@@ -1,0 +1,38 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title><h6>Editar Hallazgo</h6></ion-title>
+    <ion-buttons end>
+    <button ion-button (click)="closeModal()">Cerrar</button>
+    </ion-buttons>
+</ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="todo" (ngSubmit)="update()">
+   
+    <ion-item>
+      <ion-label>Descripción</ion-label>
+      <ion-textarea maxLength="500" formControlName="descripcion"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Razón</ion-label>
+      <ion-select formControlName="razon">
+        <ion-option value="1">1ra Orden</ion-option>
+        <ion-option value="2">2da Limpieza</ion-option>
+        <ion-option value="3">3a Estandarizacion</ion-option>
+        <ion-option value="4">Capacitación</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Tipo implementación</ion-label>
+      <ion-select formControlName="implementacion">
+        <ion-option value="1">Accion</ion-option>
+        <ion-option value="2">Inversion</ion-option>
+      </ion-select>
+    </ion-item>
+    <button ion-button type="submit" [disabled]="todo.invalid">Actualizar</button>
+  </form>
+</ion-content>

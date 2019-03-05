@@ -1,0 +1,28 @@
+
+<ion-content padding center text-center class="no-scroll" >
+     
+        <form [formGroup]="form_login" (ngSubmit)="logForm()">
+  <ion-title>Gemba Walk</ion-title>
+  <img src="../../assets/icon/user2.png" style="height:85px; width: 85px" >
+
+    <ion-list>
+        <ion-item>
+                <ion-label stacked>Usuario</ion-label>
+                <ion-input type="text" formControlName="usuario" ></ion-input>
+            </ion-item>
+
+        <ion-item>
+                <ion-label stacked>Password</ion-label>
+                <ion-input type="password" formControlName="password" ></ion-input>
+            </ion-item>
+    </ion-list>
+  
+  <button ion-button type="submit" [disabled]="!form_login.valid">Entrar<ion-icon name="md-log-in"></ion-icon></button>
+  <label for="" *ngIf="validacion==false">Error conexion/ o Login</label>
+  
+</form>
+<ion-spinner name="circles" *ngIf="loading==true"> </ion-spinner>
+</ion-content>
+
+
+   

@@ -1,0 +1,27 @@
+<ion-list >
+  <ion-grid >
+        
+           
+      <ion-item *ngFor="let item of eventos"  class="item-content item_color" >
+          <ion-row >
+                  <ion-col col-1 (click)="obtener_evento(item.idEvento)" (press)="confirmacion_eliminar(item.idEvento)">                       
+                      <img src="../../assets/icon/gembawalk.jpg" style="height:25px; width:38px; margin-top: 5px;">
+                  </ion-col>                                                                              
+                  <ion-col col-8 (click)="obtener_evento(item.idEvento)" (press)="confirmacion_eliminar(item.idEvento)">
+                  
+                        <titulo-list-event [idEvento]="item.idEvento"></titulo-list-event>
+                        <info-evento [numero_hallazgos]="item.numero_hallazgos"></info-evento>               
+                  </ion-col> 
+                  <ion-col col-2 >  
+                    <img src="../../assets/icon/cloud.png" *ngIf="item.imagenes>0 && item.tipo_eventoID!=0" style="height:30px; width: 30px;background: #ffff;margin-left: 25px; margin-top: 17px;"   [ngClass]="{abierto: titulo_evento!='Abierto:Completar evento'}" (click)="terminar_evento(item)">
+                </ion-col>
+          </ion-row>
+     </ion-item>
+     <ion-item *ngIf="no_eventos">
+         <h3>No tienes eventos agregados </h3>
+     </ion-item>
+     
+  </ion-grid>
+</ion-list>
+<ion-spinner name="circles" *ngIf="loading"> </ion-spinner>
+

@@ -1,0 +1,39 @@
+
+ <ion-card *ngFor="let item of hallazgos" class="item-content" class="item_color" >
+
+        <ion-item >
+            <ion-avatar item-start>
+                <img src="../../assets/icon/{{item.tipo_hallazgoID}}.png" (click)="obtener_hallazgo(item.rowid)" (press)=presentActionSheet(item.rowid)>
+            </ion-avatar>
+            <h2 (click)="obtener_hallazgo(item.rowid)" (press)=presentActionSheet(item.rowid)>Seleccion</h2>
+            <button ion-fab  mini item-end *ngIf="item.imagen!=null">
+                    <ion-icon name="md-cloud-upload"></ion-icon>
+            </button>                
+            <p (click)="obtener_hallazgo(item.rowid)" (press)=presentActionSheet(item.rowid)>{{item.fecha|date:'medium'}}</p>
+        </ion-item>
+
+        <img *ngIf="!item.imagen" src="../../assets//img/not_image.jpg" (click)="obtener_hallazgo(item.rowid)" (press)=presentActionSheet(item.rowid)>
+        <img *ngIf="item.imagen" [src]="item.imagen" (click)="obtener_hallazgo(item.rowid)" (press)=presentActionSheet(item.rowid) >
+      
+        <ion-card-content (click)="obtener_hallazgo(item.rowid)" (press)=presentActionSheet(item.rowid)>
+          <p> {{item.descripcion}}  </p>
+        </ion-card-content>
+      
+        <ion-row>
+          <ion-col (click)="obtener_hallazgo(item.rowid)" (press)=presentActionSheet(item.rowid)>
+            <button ion-button icon-start clear small>
+              <img src="../../assets/icon/photos.png" style="height: 21px; width: 20px;">&nbsp;
+              <info-imagenes [id]="item.rowid" ></info-imagenes>
+            </button>
+          </ion-col>
+          
+          <ion-col align-self-center text-center>
+              <ion-icon name="pin"></ion-icon>
+            <ion-note>
+              No ingresada
+            </ion-note>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+
+     

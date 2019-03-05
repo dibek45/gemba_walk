@@ -1,12 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
-
 import { Platform, MenuController, Nav } from 'ionic-angular';
-
-import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
-import { ListPage } from '../pages/list/list';
-
+import { hallazgo } from '../pages/hallazgoPage/hallazgoPage';
+import { LoginPage  } from '../pages/login/login';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Storage } from '@ionic/storage';
+import { GembaServiceProvider } from '../providers/gemba-service/gemba-service';
+import { AppVersion } from '@ionic-native/app-version/ngx';
+
 
 
 @Component({
@@ -15,31 +16,28 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  // make HelloIonicPage the root (or first) page
-  rootPage = HelloIonicPage;
-  pages: Array<{title: string, component: any}>;
+  rootPage = LoginPage;
+  pages: Array<{title: string, component: any,icon:string}>;
+  version:string;
 
   constructor(
+    private appVersion: AppVersion,
     public platform: Platform,
     public menu: MenuController,
     public statusBar: StatusBar,
-    public splashScreen: SplashScreen
+    public splashScreen: SplashScreen,
+    private storage: Storage,
+    public _service:GembaServiceProvider
   ) {
-    this.initializeApp();
 
-    // set our app's pages
-    this.pages = [
-      { title: 'Hello Ionic', component: HelloIonicPage },
-      { title: 'My First List', component: ListPage }
-    ];
+    this.initializeApp();                                                                                                                                                                                                                                                                                                                                                                
   }
 
   initializeApp() {
+    this.loading();
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+    this.statusBar.styleDefault();
+    this.splashScreen.hide();
     });
   }
 
@@ -49,4 +47,40 @@ export class MyApp {
     // navigate to the new page if it is not the current page
     this.nav.setRoot(page.component);
   }
+
+  salir() {
+    alert("Session terminada");
+    this.menu.close();
+    this.storage.set('who', null);
+    this.nav.setRoot(LoginPage,{});
+  }
+  openMisEventos() {
+    
+    this.menu.close();
+    this.nav.setRoot(hallazgo,{});
+  }
+
+  proxima(){
+    alert("PROXIMAMENTE");
+  }
+
+  
+  loading(){
+    console.log("entra");
+   this._service.log_in('norberto.aldana','081216')
+    .subscribe(
+      (data) => { // Success
+       console.log(JSON.stringify(data));
+      },
+      error => {
+      console.log(JSON.stringify(error));
+      },
+      () => {
+        console.log("finalizo");
+        // 'onCompleted' callback.
+        // No errors, route to new page here
+      })
+    }
+
+ 
 }

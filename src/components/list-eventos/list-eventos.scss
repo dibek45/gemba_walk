@@ -1,0 +1,37 @@
+list-eventos {
+    .tres_puntos  {
+        height: 60px;
+        padding: 12px
+    }
+    .incompleto{
+        display: none;
+    }
+    .class_used_to_set_icon {
+        // I'd suggest to have the icon in src/assets (eg ../assets/icon/favicon.ico)
+        background-image: url("../../assets/icon/1.png") !important;
+        // to properly position the icon:
+        background-repeat: no-repeat !important;
+        background-position: 10px 10px !important;
+        // to indent the text to the right of the icon:
+        padding-left: 50px !important;
+      }
+      .item_color{ 
+      
+        background-color: #f3f3f3;
+        
+      }
+     
+}
+.alertCustomCss {
+  color: white; // text color for basic alerts
+  button {
+      color: white !important;
+      background-color: color($colors, secondary, base) !important;
+  }
+  .alert-message {
+      color: white; // text color for confirm alerts
+  }
+  .alert-wrapper {
+      background-color: color($colors, dark, base);
+  }
+}
